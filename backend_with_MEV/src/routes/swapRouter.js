@@ -46,24 +46,6 @@ router.post('/commit', (req, res) => {
   });
 });
 
-// POST /api/swap/reveal (Reveal phase)
-// router.post('/reveal', async (req, res) => {
-//   const { fromToken, toToken, amountIn, secret } = req.body;
-//   const hash = keccak256(
-//     toUtf8Bytes(`${fromToken}:${toToken}:${amountIn}:${secret}`)
-//   );
-
-//   const commit = pendingCommits.get(hash);
-
-//   if (!commit || Date.now() > commit.expiresAt) {
-//     return res.status(400).json({ error: 'Invalid or expired commit' });
-//   }
-
-//   pendingCommits.delete(hash);
-//   const quote = await getQuote(fromToken, toToken, amountIn);
-//   res.json({ status: 'Revealed and Executed', data: quote });
-// });
-
 router.post('/reveal', async (req, res) => {
   const { fromToken, toToken, amountIn, secret } = req.body;
   const input = `${fromToken}:${toToken}:${amountIn}:${secret}`;
